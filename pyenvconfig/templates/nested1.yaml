@@ -1,0 +1,12 @@
+doc: 'Help text for this config file'
+
+resources:
+  var4:
+    type: 'normal'
+    value:
+      dev: 'var4'
+      stage: 'var4'
+      uat: 'var4'
+      production: 'var4'
+      qa: 'var4'
+
