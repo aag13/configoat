@@ -39,7 +39,7 @@ from pyenvconfig.pyenvconfig import PyEnvConfig
 #
 # def test__build_data_dict():
 #     temp = PyEnvConfig()
-#     temp.initialize(config="/home/hose2406101891a/Desktop/rrndd/pyenvconfig/tests/templates/config.yaml", env="dev")
+#     temp.initialize(config="/home/hose2406101891a/Desktop/rrndd/pyenvconfig/tests/templates/main.yaml", env="dev")
 #     assert temp.get("var1") == {'k':2,'Y':3}
 #     print(type(temp.get('var1')))
 #     assert temp.get("var2") == "var2 value"

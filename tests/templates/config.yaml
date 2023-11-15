@@ -19,4 +19,4 @@ resources:
 
 #  nested1:
 #    type: 'nested'
-#    path: 'config/nested1.yaml'
+#    path: 'config/nested.yaml'
