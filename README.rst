@@ -1,6 +1,6 @@
-===========
+=========
 confiGOAT
-===========
+=========
 
 
 .. image:: https://img.shields.io/pypi/v/configoat.svg

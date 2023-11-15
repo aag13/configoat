@@ -16,8 +16,8 @@ requirements = ['Click>=7.0', 'PyYAML>=5.0']
 test_requirements = ['pytest>=3', ]
 
 setup(
-    author="Asadullah Al Galib",
-    author_email='asadullahgalib13@gmail.com',
+    author="Hasan-UL-Banna, Asadullah Al Galib",
+    author_email='hasanulbanna04056@gmail.com, asadullahgalib13@gmail.com',
     python_requires='>=3.5',
     classifiers=[
         'Development Status :: 4 - Beta',

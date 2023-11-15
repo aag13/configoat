@@ -47,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'confiGOAT'
-copyright = "2023, Asadullah Al Galib"
-author = "Asadullah Al Galib"
+copyright = "2023, Hasan-UL-Banna, Asadullah Al Galib"
+author = "Hasan-UL-Banna, Asadullah Al Galib"
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -129,7 +129,7 @@ latex_elements = {
 latex_documents = [
     (master_doc, 'configoat.tex',
      'confiGOAT Documentation',
-     'Asadullah Al Galib', 'manual'),
+     'Hasan-UL-Banna, Asadullah Al Galib', 'manual'),
 ]
 
 

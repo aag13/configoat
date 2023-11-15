@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Asadullah Al Galib <asadullahgalib13@gmail.com>
+* Hasan-UL-Banna, Asadullah Al Galib <hasanulbanna04056@gmail.com, asadullahgalib13@gmail.com>
 
 Contributors
 ------------
