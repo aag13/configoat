@@ -1,6 +1,4 @@
-<h1 align="center">
-confiGOAT
-</h1>
+<h1 align="center"> confiGOAT </h1>
 
 confiGOAT is a powerful, flexible, and developer-friendly configuration management tool.
 
@@ -30,7 +28,6 @@ $ cd configoat
 $ pip install .
 ```
 
-
 configoat is powerful and easy to use:
 
 You can initialize the package using the following management command.
@@ -43,12 +40,9 @@ $ configoat init
 >>> conf.initialize(config="config/main.yaml", env="dev", module="all_config")
 ```
 
-
-
 ## Documentation
 
 confiGOAT has usage and reference documentation at [confiGOAT.readthedocs.io](https://github.com/aag13/configoat/blob/main/README.rst).
-
 
 
 ## Contributing
