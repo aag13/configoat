@@ -1,0 +1,27 @@
+doc: 'Help text for this config file'
+
+resources:
+    varAA:
+        type: 'normal'
+        value:
+            dev: 'value of varAA in dev'
+            stage: 'value of varAA in stage'
+            uat: 'value of varAA in uat'
+            production: 'value of varAA in production'
+            qa: 'value of varAA in qa'
+
+    varBB:
+        type: 'normal'
+        value:
+            # $ref(@.var2) -> references the variable 'var2' which is inside the main YAML file
+            # $ref(@.var3) -> references the variable 'var3' which is inside the main YAML file
+
+            dev: '$ref(@.var2)/cricket/$ref(@.var3) bowler'
+            stage: '$ref(@.var2)_football_$ref(@.var3) striker'
+            uat: '$ref(@.var2)-tennis-$ref(@.var3) player'
+            production: '$ref(@.var2) badminton $ref(@.var3) player'
+            qa: '$ref(@.var2) baseball $ref(@.var3) runner'
+
+    varCC:
+        type: "common"
+        value: "$ref(varAA)"    # $ref(varAA) -> references the variable 'varAA' inside this file

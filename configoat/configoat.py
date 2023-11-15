@@ -13,24 +13,29 @@ META_TYPE_KEY = "__type"
 # REFERENCE_HOME = "@"
 
 
-class PyEnvConfig:
+class ConfiGOAT:
     def __init__(self):
         self._data_dict = None
         self._environment = None
         self._root_config = DEFAULT_ROOT_CONFIG
         self._root_module = DEFAULT_ROOT_MODULE
 
-    def get(self, key):
+    def get(self, key, default=None, cast=None):
         copy_data = copy.deepcopy(self._data_dict)
         modules = key.split('.')
         if modules[0] == '@':
             modules = modules[1:]
         else:
             raise InvalidAccessKeyExeption(
-                "Invalid Access Key. Access Key must start with '@.' to denote root config. Key ({})".format(key))
-        for m in modules:
-            copy_data = copy_data[m]
-        return copy_data.get('value', None)
+                "Invalid Access Key. Access Key must start with '@' to denote root config. Key ({})".format(key))
+
+        try:
+            for m in modules:
+                copy_data = copy_data[m]
+
+            return copy_data.get('value', default) if cast is None else cast(copy_data.get('value', default))
+        except KeyError:
+            return default if cast is None else cast(default)
 
     def initialize(self, config=None, env=None, module=None):
         self._root_config = config if config is not None else self._root_config
@@ -176,7 +181,7 @@ class PyEnvConfig:
         return self.get(key)
 
 
-myconfig = PyEnvConfig()
+conf = ConfiGOAT()
 
 
 class YAMLFormatException(Exception):

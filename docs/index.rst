@@ -1,4 +1,4 @@
-Welcome to PyEnvConfig's documentation!
+Welcome to confiGOAT's documentation!
 ======================================
 
 .. toctree::

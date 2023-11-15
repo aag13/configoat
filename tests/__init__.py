@@ -1,1 +1,1 @@
-"""Unit test package for pyenvconfig."""
+"""Unit test package for configoat."""

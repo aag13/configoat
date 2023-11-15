@@ -1,0 +1,57 @@
+doc: 'This is the main config file where the processing starts from'
+
+# Create all your variables inside resources as shown below. Use proper variable name
+# Resource Types => 'normal', 'common', 'nested', 'script'
+# 'normal' => Use this type if the value of the variable will be different for different environments
+# 'common' => Use this type if the value of the variable will be same across all environments
+# 'nested' => Use this type for a nested YAML file.
+# 'script' => Use this type for a python script file.
+
+resources:
+    var1:
+        type: 'normal'
+        value:
+            dev: 'value of var1 for dev'
+            stage: 'value of var1 for stage'
+            uat: 'value of var1 for uat'
+            production: 'value of var1 for production'
+            qa: 'value of var1 for qa'
+
+    var2:
+        type: 'common'
+        value: "value of var2"
+
+    var3:
+        type: 'common'
+        value: False
+
+    var4:
+        type: 'common'
+        value: 100
+
+    var5:
+        type: 'common'
+        value: [ "Banana", "Mango", "Apple" ]
+
+    var6:
+        type: 'common'
+        value: {
+            "name": "Raihan Boss",
+            "age": 66,
+            "address": {
+                "city": "Dhaka",
+                "country": "Bangladesh",
+            }
+        }
+
+# DON'T DO THIS! You can ONLY use '$ref' inside str variables
+#    var6:
+#        type: 'common'
+#        value: {
+#            "name": "Raihan Boss",
+#            "age": 66,
+#            "address": {
+#                "city": "$ref(var7.varAA)",
+#                "country": "Bangladesh",
+#            }
+#        }

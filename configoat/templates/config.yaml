@@ -1,0 +1,33 @@
+doc: 'This is the main config file where the processing starts from'
+
+resources:
+    var1:
+        type: 'normal'
+        value:
+            dev: 'value of var1 in dev'
+            stage: 'value of var1 in stage'
+            uat: 'value of var1 in uat'
+            production: 'value of var1 in production'
+            qa: 'value of var1 in qa'
+
+    var2:
+        type: 'common'
+        value: var2
+
+    nested1:
+        type: 'nested'
+        path: 'templates/nested1.yaml'
+
+    script1:
+        type: 'script'
+        variable_list: ['a', 'b', 'c']
+        path: 'templates/script.py'
+
+    var3:
+        type: 'normal'
+        value:
+            dev: 'dev'
+            stage: 'stage'
+            uat: 'uat'
+            production: 'production'
+            qa: 'qa'

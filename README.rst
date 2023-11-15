@@ -1,26 +1,26 @@
 ===========
-PyEnvConfig
+confiGOAT
 ===========
 
 
-.. image:: https://img.shields.io/pypi/v/pyenvconfig.svg
-        :target: https://pypi.python.org/pypi/pyenvconfig
+.. image:: https://img.shields.io/pypi/v/configoat.svg
+        :target: https://pypi.python.org/pypi/configoat
 
-.. image:: https://img.shields.io/travis/aag13/pyenvconfig.svg
-        :target: https://travis-ci.com/aag13/pyenvconfig
+.. image:: https://img.shields.io/travis/aag13/configoat.svg
+        :target: https://travis-ci.com/aag13/configoat
 
-.. image:: https://readthedocs.org/projects/pyenvconfig/badge/?version=latest
-        :target: https://pyenvconfig.readthedocs.io/en/latest/?version=latest
+.. image:: https://readthedocs.org/projects/configoat/badge/?version=latest
+        :target: https://configoat.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
 
 
 
-PyEnvConfig is a powerful, flexible, and developer-friendly configuration management tool.
+confiGOAT is a powerful, flexible, and developer-friendly configuration management tool.
 
 
 * Free software: MIT license
-* Documentation: https://pyenvconfig.readthedocs.io.
+* Documentation: https://configoat.readthedocs.io.
 
 
 Features

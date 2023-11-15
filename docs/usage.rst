@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use PyEnvConfig in a project::
+To use confiGOAT in a project::
 
-    import pyenvconfig
+    import configoat

@@ -1,4 +1,4 @@
-"""Console script for pyenvconfig."""
+"""Console script for configoat."""
 import click
 from pathlib import Path
 import sys
@@ -10,8 +10,6 @@ def cli():
     pass
 
 @cli.command()
-# @click.argument('dir_name')
-# @click.argument('file_name')
 def init():
     dir_name = click.prompt('Enter directory name', default='configs', type=str)
     file_name = click.prompt('Enter name of the main configuration file', default='main.yaml', type=str)
@@ -66,13 +64,6 @@ def init():
             shutil.copy("{}/script.py".format(templates_dir), "{}/{}".format(nested_scripts_dir, "script.py"))
     except:
         click.echo("Error during setup operation. Failed to cleanup")
-
-    # # Create the YAML file inside the directory
-    # yaml_file_path = os.path.join(dir_name, f"{file_name}")
-    # if not os.path.exists(yaml_file_path):
-    #     with open(yaml_file_path, 'w') as f:
-    #         f.write("# Your YAML content goes here")
-    #
     click.echo("Setup completed")
 
 
