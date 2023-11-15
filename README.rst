@@ -1,37 +1,69 @@
-=========
+<h1 align="center">
 confiGOAT
-=========
-
-
-.. image:: https://img.shields.io/pypi/v/configoat.svg
-        :target: https://pypi.python.org/pypi/configoat
-
-.. image:: https://img.shields.io/travis/aag13/configoat.svg
-        :target: https://travis-ci.com/aag13/configoat
-
-.. image:: https://readthedocs.org/projects/configoat/badge/?version=latest
-        :target: https://configoat.readthedocs.io/en/latest/?version=latest
-        :alt: Documentation Status
-
-
-
+</h1>
 
 confiGOAT is a powerful, flexible, and developer-friendly configuration management tool.
 
+Features:
 
-* Free software: MIT license
-* Documentation: https://configoat.readthedocs.io.
+- Manage all your environment variables or configuration parameters from a single setup.
+- Use environment variables for different environments from the same setup.
+- Cast values before you use them.
+- Allow simple structure to configure nested configurations.
+- Load configuration parameters from python scripts.
+- Access parameters at every nested level using dynamic module.
+- Keep track of all parameters using a single interface.
+
+## Installing
+
+confiGOAT can be installed with [pip](https://pip.pypa.io):
+
+```bash
+$ pip install configoat
+```
+
+Alternatively, you can grab the latest source code from [GitHub](https://github.com/aag13/configoat):
+
+```bash
+$ git clone https://github.com/aag13/configoat
+$ cd configoat
+$ pip install .
+```
 
 
-Features
---------
+configoat is powerful and easy to use:
 
-* TODO
+You can initialize the package using the following management command.
+```bash
+$ configoat init
+```
 
-Credits
--------
+```python3
+>>> from configoat import conf
+>>> conf.initialize(config="config/main.yaml", env="dev", module="all_config")
+```
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+## Documentation
+
+confiGOAT has usage and reference documentation at [confiGOAT.readthedocs.io](https://github.com/aag13/configoat/blob/main/README.rst).
+
+
+
+## Contributing
+
+confiGOAT happily accepts contributions. Please see our
+[contributing documentation](https://github.com/aag13/configoat/blob/main/CONTRIBUTING.rst)
+for some tips on getting started.
+
+
+## Maintainers
+
+- [@banna](https://github.com/Hasan-Ul-Banna) (Hasan-UL-Banna)
+- [@galib](https://github.com/aag13) (Asadullah Al Galib)
+
+👋
+
+
+
