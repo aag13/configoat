@@ -35,9 +35,36 @@ You can initialize the package using the following management command.
 $ configoat init
 ```
 
+## How to Use confiGOAT
+
+Access environment variables using get() inside any python module/script
 ```python3
 >>> from configoat import conf
->>> conf.initialize(config="config/main.yaml", env="dev", module="all_config")
+>>> conf.initialize(config="configs/main.yaml", env="dev", module="all_config")
+>>> print(conf.get('@.var1', default='test', cast=str))
+>>> print(conf.get('@.var1'))
+>>> print(conf.get('@.var3'))
+>>> print(conf.get('@.var5'))
+>>> print(conf.get('@.var7.varAA'))
+>>> print(conf.get('@.var7.varBB'))
+>>> print(conf.get('@.var7.varCC'))
+>>> print(conf.get('@.var8'))
+>>> print(conf.get('@.var9.d'))
+>>> print(conf.get('@.var9.e'))
+```
+
+Access environment variables using dynamic modules inside any python module/script
+```python3
+>>> import all_config
+>>> print(all_config.var1)
+>>> print(all_config.var3)
+>>> print(all_config.var5)
+>>> print(all_config.var7.varAA)
+>>> print(all_config.var7.varBB)
+>>> print(all_config.var7.varCC)
+>>> print(all_config.var8)
+>>> print(all_config.var9.d)
+>>> print(all_config.var9.e)
 ```
 
 ## Documentation
