@@ -4,13 +4,13 @@
 
 from setuptools import setup, find_packages
 
-with open('README.rst') as readme_file:
+with open('README.md') as readme_file:
     readme = readme_file.read()
 
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=7.0', 'PyYAML>=5.1']
+requirements = ['Click>=7.0', 'PyYAML>=5.0,<6']
 # install_requires=['pandas>=1.0', 'scipy==1.1', 'matplotlib>=2.2.1,<3']
 
 test_requirements = ['pytest>=3', ]
@@ -43,6 +43,7 @@ setup(
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
+    long_description_content_type="text/markdown",
     include_package_data=True,
     keywords='configoat',
     name='configoat',
@@ -50,6 +51,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/aag13/configoat',
-    version='0.1.1',
+    version='0.1.0',
     zip_safe=False,
 )
