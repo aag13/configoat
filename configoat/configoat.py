@@ -1,4 +1,5 @@
 import enum
+import os
 import types
 import sys
 import yaml
@@ -9,6 +10,7 @@ import re
 DEFAULT_ROOT_CONFIG = "main.yaml"
 DEFAULT_ROOT_MODULE = "root_config"
 META_TYPE_KEY = "__type"
+ENV_NAME = "CONFIGOAT_ENVIRONMENT"
 # REFERENCE_PREFIX = "$ref"
 # REFERENCE_HOME = "@"
 
@@ -41,6 +43,8 @@ class ConfiGOAT:
         self._root_config = config if config is not None else self._root_config
         self._root_module = module if module is not None else self._root_module
         self._environment = env
+        if self._environment:
+            os.environ.setdefault(ENV_NAME, self._environment)
         self._data_dict = self._build_data_dict(self._root_config, '@')
         self._update_reference_value(self._data_dict)
         self._initiate_dynamic_module()
