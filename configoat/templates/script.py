@@ -1,7 +1,13 @@
 import math
+import os
 
 a = 100
-b = 'hello'
+
+if os.environ.get("CONFIGOAT_ENVIRONMENT", "dev") == "dev":
+    b = "hello from dev"
+else:
+    b = 'hello from non-dev'
+
 c = math.sqrt(5)
 
 # $ref(@.var7.varCC) -> references the variable 'varCC' which is inside the variable 'var7' which is inside the main YAML file
