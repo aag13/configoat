@@ -75,8 +75,13 @@ class ConfiGOAT:
                         current_dict[key] = self._build_data_dict(data[key]['path'], '{}.{}'.format(parent_path, key))
                         current_dict[key][META_TYPE_KEY] = resource_type
                     elif resource_type == ResourceTypeEnum.SCRIPT.value:
-                        current_dict[key] = self._script_parser(data[key]['path'], data[key]['variable_list'])
-                        current_dict[key][META_TYPE_KEY] = resource_type
+                        should_flat = data[key].get('flat', False)
+                        parsed_dict = self._script_parser(data[key]['path'], data[key]['variable_list'])
+                        if should_flat:
+                            current_dict.update(parsed_dict)
+                        else:
+                            current_dict[key] = parsed_dict
+                            current_dict[key][META_TYPE_KEY] = resource_type
                     else:
                         raise YAMLFormatException("Invalid YAML KeyType. KeyType ({})".format(resource_type))
             except:
@@ -126,7 +131,8 @@ class ConfiGOAT:
         for m in modules:
             copy_data = copy_data[m]
         if copy_data['__ref'] is not None:
-            self._reference_resolver(copy_data['__ref'], references_seen)
+            copy_data['value'] = self._reference_resolver(copy_data['__ref'], references_seen)
+
         return copy_data['value']
 
     def _reference_resolver(self, reference_string, references_seen=None):
