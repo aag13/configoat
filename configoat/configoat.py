@@ -187,8 +187,8 @@ class ConfiGOAT:
     def _validate_reference(self):
         print(self._data_dict)
 
-    def __call__(self, key):
-        return self.get(key)
+    def __call__(self, key, default=None, cast=None):
+        return self.get(key=key, default=default, cast=cast)
 
 
 conf = ConfiGOAT()
