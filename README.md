@@ -1,18 +1,23 @@
 <h1 align="center"> confiGOAT </h1>
 
-confiGOAT is a powerful, flexible, and developer-friendly configuration management tool.
+confiGOAT is a powerful, flexible, and developer-friendly configuration management tool. 🔥
 
 Features:
 
 - Manage all your environment variables or configuration parameters from a single setup.
-- Use environment variables for different environments from the same setup.
-- Cast values before you use them.
-- Allow simple structure to configure nested configurations.
-- Load configuration parameters from python scripts.
-- Access parameters at every nested level using dynamic module.
-- Keep track of all parameters using a single interface.
+- Support all your development, testing, and production environments.
+- Define configuration parameters using both YAML and Python scripts.
+- Cast values before using them.
+- Support both simple and straightforward use cases as well as complex and multi-layered 
+nested structures.
+- Use dynamic modules to access the parameters through imports.
+- Use a single exposed API to interact with the layered configurations.
+- Support nested structures to model the configurations as per business needs.
+- Powerful reference mechanism to reuse variables *from any levels at any levels* 
+regardless of where in the hierarchy it is defined.
+- 4 different resource types in the YAML to support the vast majority of use cases.
 
-## Installing
+## Installation
 
 confiGOAT can be installed with [pip](https://pip.pypa.io):
 
@@ -28,14 +33,18 @@ $ cd configoat
 $ pip install .
 ```
 
-configoat is powerful and easy to use:
+## How to Use confiGOAT
+
+confiGOAT is very powerful and easy to use. Since you need to define your all the 
+environment variables
+
 
 You can initialize the package using the following management command.
 ```bash
 $ configoat init
 ```
 
-## How to Use confiGOAT
+
 
 Access environment variables using get() inside any python module/script
 ```python3
