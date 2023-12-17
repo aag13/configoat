@@ -40,17 +40,19 @@ class ConfiGOAT:
             return default if cast is None else cast(default)
 
     def initialize(self, config=None, env=None, module=None):
+        if not env:
+            raise ValueError("Must provide an environment")
+
         self._root_config = config if config is not None else self._root_config
         self._root_module = module if module is not None else self._root_module
         self._environment = env
-        if self._environment:
-            os.environ.setdefault(ENV_NAME, self._environment)
+        os.environ.setdefault(ENV_NAME, self._environment)
         self._data_dict = self._build_data_dict(self._root_config, '@')
         self._update_reference_value(self._data_dict)
         self._initiate_dynamic_module()
 
     def _update_reference_value(self, current_dict):
-        for key in {key:value for key, value in current_dict.items() if isinstance(value, dict)}:
+        for key in {key: value for key, value in current_dict.items() if isinstance(value, dict)}:
             if current_dict[key]['__type'] in [ResourceTypeEnum.COMMON.value, ResourceTypeEnum.NORMAL.value, ResourceTypeEnum.DEFAULT.value]:
                 if current_dict[key]['__ref']:
                     current_dict[key]['value'] = self._reference_resolver(current_dict[key]['__ref'])
