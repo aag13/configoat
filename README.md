@@ -68,7 +68,7 @@ For example, if you can fit all your configuration variables in a single file, c
 2 if you want to structure all the configuration parameters in separate files based on their types, such as, 
 security configurations in *security.yaml* file and database configurations in *database.yaml* file. Option 3 
 is best suited for cases where you need both the nested hierarchy structure and need to resolve values 
-for some parameters that require executing some code. 
+for some parameters that require executing some code.
 
 ❄️❄️❄️
 
@@ -185,12 +185,12 @@ Now that you have prepared the configurations for your project, you need to use 
    ```
    - *config* denotes the path to the main configuration YAML file to start loading the variables from.
    - *env* denotes which environment the variables should be loaded for.
-   - *module* denotes the name of the namespace under which all variables will be made available in the 
+   - *module* denotes the name of the namespace under which all variables will be made available for the 
    dynamic module access.
 2. To access the configuration variables, you have 2 options.
    - *Dot notation* : You can use the *conf* object to access any variable by providing its full 
    *dot notation path* from the root configuration file. *@* below denotes the root of the configuration, 
-   the main configuration file. You can also pass the *conf* variable around like any other variable in python
+   i.e. the main configuration file. You can also pass the *conf* variable around like any other variable in python
    and access values like shown below.
    ```python3
    print(conf("@.VARIABLE_NAME"))
@@ -200,11 +200,12 @@ Now that you have prepared the configurations for your project, you need to use 
    print(conf.get("@.NESTED.VARIABLE_NAME"))
    ```
    - *Dynamic module* : Use python's module and import mechanism to access any configuration 
-   variable. In this approach, you import the module that you defined during the initialization step. 
-   When confiGOAT initialized your configuration variables, it also created dynamic modules and attributes 
-   in those modules following your configuration nested hierarchy. All these dynamic modules are inserted 
-   under the provided namespace, e.g. the *all_config* module name. You can import this module anywhere in 
-   your project and use the variables like any other modules and their attributes.
+   variable. In this approach, you import the module that you defined during the initialization step,
+   e.g. *all_config*. When confiGOAT initialized your configuration variables, it also created dynamic 
+   modules and attributes in those modules following your configuration nested hierarchy. All these 
+   dynamic modules are inserted under the provided namespace, e.g. the *all_config* module name. 
+   You can import this module anywhere in your project and use the variables like any other modules 
+   and their attributes.
    ```python3
    import all_config
    print(all_config.var3)
@@ -212,7 +213,8 @@ Now that you have prepared the configurations for your project, you need to use 
    ```
 
 **You can also provide a default value in case the variable is not found and a casting function to transform
-the final value**.
+the final value before returning. Casting and default value features are available only when 
+accessing values using *conf()* or *conf.get()***.
 ```python3
 print(conf("@.VARIABLE_NAME", default=10, cast=int))
 
