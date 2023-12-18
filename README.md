@@ -1,7 +1,7 @@
 <h1 align="center"> confiGOAT </h1>
 
 confiGOAT is a powerful, flexible, and developer-friendly management tool for all your 
-environment variables and configurations. 🔥
+environment variables and configurations. 🔥🔥🔥
 
 ## Features
 Here are some of the features that confiGOAT provides:
@@ -11,12 +11,12 @@ Here are some of the features that confiGOAT provides:
 - Define configurations once, use it everywhere.
 - Define configuration parameters using both YAML and Python scripts.
 - Cast values before using them.
-- Powerful reference mechanism to reuse variables *from any levels at any levels*.
+- Powerful reference mechanism to reuse variables *from any levels at any levels in any direction*.
 - Multiple resource types in the YAML to support the vast majority of use cases.
 - Support both simple use cases and complex, multi-layered nested configurations.
 - Use dynamic modules to access the parameters through import interface in Python.
 - Use a single exposed API to interact with the layered configurations.
-- Support nested structures to model the configurations as per business needs.s
+- Support nested structures to model the configurations as per business needs.
 
 🎉🚀🌟
 
@@ -121,7 +121,7 @@ configuration and environment variables in the generated YAML and python script 
    var6:
      type: 'common'
      value: {
-       "name": "Raihan Boss",
+       "name": "Raihan The Boss",
        "age": 66,
        "address": {
          "city": "Dhaka",
@@ -129,19 +129,19 @@ configuration and environment variables in the generated YAML and python script 
        }
      }
    ```
-   - *nested* : Use this type for a nested YAML file (Available if you chose option 2 and 3 during setup). *path* 
-   is the relative path from the project root folder to that nested YAML file, e.g. *configs/yamls/nested.yaml*. ✨ 
+   - *nested* : Use this type for a nested YAML file (Available if you chose option 2 or 3 during setup). *path* 
+   is the relative path from the project root folder to that nested YAML file, e.g. *configs/yamls/nested.yaml*. 
    All the variables which are defined in the specified nested YAML file will be available under the 
-   namespace of the *var7* variable.
+   namespace of the *var7* variable. ✨
    ```yaml
    var7:
      type: 'nested'
      path: 'path/from/project/root/to/nested.yaml'
    ```
    - *script* : Use this type for a python script file (Available if you chose option 3 during setup). *path* 
-   is the relative path from the project root folder to that nested script file, e.g. *configs/scripts/script.py*. ✨ 
+   is the relative path from the project root folder to that nested script file, e.g. *configs/scripts/script.py*. 
    Only the variables which are defined in the *variable_list* property will be available from specified 
-   nested script file under the namespace of the *var9* variable.
+   nested script file under the namespace of the *var9* variable. ✨
    ```yaml
    var9:
      type: 'script'
@@ -154,22 +154,60 @@ configuration and environment variables in the generated YAML and python script 
 5. If you want to reuse the value from another variable using reference, either in the same file or any file 
 in the configuration hierarchy, you need to use **$ref(variable_name)** format by replacing the 
 variable_name with the actual variable in your configuration that you want to refer to. 👇
-   ```yaml
-   var8:
-     type: 'common'
-     value: "$ref(var7.varAA)"
-   ```
-   - Here, we are creating a new variable of type *common* by referencing the value from another variable 
-   called *varAA* which is nested inside the variable *var7*.
-   - If the variable is defined in any other file, then you have to provide the full *dot notation path* 
-   to that variable from the main configuration file, e.g. *$ref(@.PROJECT_CODE)* refers to the variable 
-   *PROJECT_CODE* defined in the root configuration YAML file. See the *nested.yaml* file for 
-   an example on how to use the dot notation path for referencing a variable.
+6. Let's consider a couple of scenarios to demonstrate how variable referencing works. 🌅
+   - First, you need to understand the difference between the *source* and *target* variables. Here, 
+   *source* variable is the one whose reference is being used and *target* variable is the one that is 
+   using the reference. 🎁🎁
+   - ***Target* variable in the main config YAML file** : If the *target* variable is in the main config file, 
+   such as *main.yaml*, then you can accomplish that in two ways depending on where the *source* 
+   variable is.
+     - **Source variable in the main config file** : If the *source* variable is in the main config 
+     file, then use *$ref(SIBLING)* in the *target variable*. This will get the value from a variable 
+     called *SIBLING* to the *target* variable like this. ✨
+     ```yaml
+     target_var:
+       type: 'common'
+       value: "$ref(SIBLING)"
+     ```
+     - **Source variable in a nested file** : If there is a *nested* variable called *nested1* and inside 
+     the YAML of this file, there exists a variable called *varAA*, then the full *dot notation path* to this variable 
+     from the main config file is *nested1.varAA*. So use *$ref(nested1.varAA)* in the *target variable*. ✨
+     ```yaml
+     target_var:
+       type: 'common'
+       value: "$ref(nested1.varAA)"
+     ```
+   - ***Target* variable in any other YAML/script file** : If the *target* variable is in any file other than 
+   the main config file, then you can accomplish that in two ways depending on where the *source* variable is.
+     - **Source variable in the same file** : If the *source* variable is in the same file as the  
+     *target variable*, then use *$ref(SIBLING)* in the *target variable*. This will get the value from a variable 
+     called *SIBLING* to the *target* variable like this. ✨
+     ```yaml
+     target_var:
+       type: 'common'
+       value: "$ref(SIBLING)"
+     ```
+     - **Source variable in any other file** : If there is a *nested* variable called *nested1* in the 
+     main config file and inside the YAML of this *nested* variable, there exists a variable called 
+     *varAA*, then the full *dot notation path* to this variable is *@.nested1.varAA*. 
+     So use *$ref(@.nested1.varAA)* in the *target variable*. ✨
+     ```yaml
+     target_var:
+       type: 'common'
+       value: "$ref(@.nested1.varAA)"
+     ```
+   - **So, when to use *@* in the reference**: If the *target* variable is in the root config file, then you don't need 
+   to add *@* in the full *dot notation path*. Because you can use the dotted path to follow the nested 
+   variable hierarchy since you are already in the root config file. However, if the *target* variable 
+   is in anywhere other than the root config file, then you need to prepend the *dot notation path* 
+   with *@* to indicate whether to start looking for the *nested* variable from the root file or the 
+   current file. Starting the dotted path with *@* simply means to *start looking for this variable 
+   from the root config file*. 🎂🎂
 
 NOTE: Referencing a variable is bidirectional and depth agnostic, meaning that any variable can be referenced 
-**at any depth from any depth in any direction**, as long as no circular dependency is created during 
-referencing another variable. *Circular Dependency* means that definitions of two variables are dependent 
-on each other and neither variable can be resolved due to this dependency. In case of circular dependency, 
+**at any depth from any depth in any direction**, as long as no circular dependency is created during the 
+referencing of another variable. *Circular Dependency* means that definitions of two variables are dependent 
+on each other and neither variable can be resolved due to this dependency. In case of any circular dependency, 
 confiGOAT will raise an exception indicating the circular dependency.
 
 🌟🌟🌟
@@ -178,7 +216,7 @@ confiGOAT will raise an exception indicating the circular dependency.
 
 Now that you have prepared the configurations for your project, you need to use them in your project. 
 
-1. First, you need to initialize and load all the configuration and environmental variables from the setup.
+1. First, you need to initialize and load all the configuration and environment variables.
    ```python3
    from configoat import conf
    conf.initialize(config="configs/main.yaml", env="dev", module="all_config")
@@ -187,9 +225,21 @@ Now that you have prepared the configurations for your project, you need to use 
    - *env* denotes which environment the variables should be loaded for.
    - *module* denotes the name of the namespace under which all variables will be made available for the 
    dynamic module access.
+   - In practice, you don't want to hardcode the environment value like this, *env="dev"*. This way, you 
+   won't be able to change it dynamically on the different environments your app is running on. We 
+   recommend getting this value from another source that can be resolved during runtime. E.g. if you are 
+   using confiGOAT in a Django app, then using CI/CD or starting script, inject the environment value 
+   as the command line argument during the project run. Then, before initialization, 
+   fetch this value from *os* like below,
+   ```python3
+   import os
+   from configoat import conf
+   current_env = os.getenv("YOUR_ENVIRONMENT_VARIABLE")
+   conf.initialize(config="configs/main.yaml", env=current_env, module="all_config")
+   ```
 2. To access the configuration variables, you have 2 options.
    - *Dot notation* : You can use the *conf* object to access any variable by providing its full 
-   *dot notation path* from the root configuration file. *@* below denotes the root of the configuration, 
+   *dot notation path* from the root configuration file. *@* denotes the root of the configuration, 
    i.e. the main configuration file. You can also pass the *conf* variable around like any other variable in python
    and access values like shown below.
    ```python3
@@ -203,13 +253,22 @@ Now that you have prepared the configurations for your project, you need to use 
    variable. In this approach, you import the module that you defined during the initialization step,
    e.g. *all_config*. When confiGOAT initialized your configuration variables, it also created dynamic 
    modules and attributes in those modules following your configuration nested hierarchy. All these 
-   dynamic modules are inserted under the provided namespace, e.g. the *all_config* module name. 
-   You can import this module anywhere in your project and use the variables like any other modules 
-   and their attributes.
+   dynamic modules are inserted under the provided namespace, e.g. the *all_config* module name. After 
+   initialization, you can import this module anywhere in your project and access the variables like any other modules 
+   and their attributes. Some examples are given below on how variables can be accessed using dynamic module. 
    ```python3
+   # accessing variables from the root module name, i.e. all_config
    import all_config
    print(all_config.var3)
    print(all_config.var2.var4)
+   
+   # importing all variables using * from the root module name, i.e. all_config
+   from all_config import *
+   print(var3)
+   print(var2.var4)
+   
+   from all_config import var2 as current
+   print(current.var4)
    ```
 
 **You can also provide a default value in case the variable is not found and a casting function to transform
