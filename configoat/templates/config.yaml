@@ -20,7 +20,7 @@ resources:
 
     script1:
         type: 'script'
-        variable_list: ['a', 'b', 'c']
+        variable_list: ['a', 'b', 'c']  # only these variables from the script will be available under the namespace of 'script1'
         path: 'templates/script.py'
 
     var3:

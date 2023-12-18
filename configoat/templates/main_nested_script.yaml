@@ -66,5 +66,5 @@ resources:
 
     var9:
         type: 'script'
-        variable_list: ['a', 'b', 'c', 'd', 'e']
+        variable_list: ['a', 'b', 'c', 'd', 'e']    # only these variables from the script will be available under the namespace of 'var9'
         path: 'path/from/project/root/to/script.py'   # This is the path of child script.py file, e.g. 'configs/scripts/script.py'
