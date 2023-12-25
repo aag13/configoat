@@ -3,6 +3,7 @@ import os
 import types
 import sys
 import yaml
+import ast
 import copy
 import importlib.util
 import re
@@ -94,7 +95,8 @@ class ConfiGOAT:
             '__ref': None,
             'value': val_or_ref,
         }
-        if isinstance(val_or_ref, str) and '$ref' in val_or_ref:
+        val_or_ref = str(val_or_ref)
+        if '$ref' in val_or_ref:
             val_dict.update({
                 '__ref': self._get_absolute_ref(val_or_ref, parent_path),
                 'value': None
@@ -151,15 +153,50 @@ class ConfiGOAT:
         return self._build_reference_value(reference_string, references_seen)
 
     def _build_reference_value(self, reference_string, references_seen):
-        pattern = r'\$ref\(@\.(.*?)\)'
+        pattern1 = r"'\$ref\(@\.(.*?)\)'"
+        pattern2 = r'\$ref\(@\.(.*?)\)'
+        pattern, stand_alone = (pattern1, False) if re.search(pattern1, reference_string) else (pattern2, True)
         matches = re.finditer(pattern, reference_string)
 
         for match in matches:
             reference_key = match.group(1)
             if reference_key in references_seen:
                 replacement_value = references_seen[reference_key]
+                if not stand_alone and isinstance(replacement_value, str):
+                    replacement_value = '"'+replacement_value+'"'
                 reference_string = reference_string.replace(match.group(0), str(replacement_value))
 
+        return self._convert_string_to_datatype(reference_string)
+
+    def _convert_string_to_datatype(self, reference_string):
+        # Attempt to convert to int
+        try:
+            return int(reference_string)
+        except ValueError:
+            pass
+
+        # Attempt to convert to float
+        try:
+            return float(reference_string)
+        except ValueError:
+            pass
+
+        # Attempt to evaluate as a Python literal (list, dict, etc.)
+        try:
+            return ast.literal_eval(reference_string)
+        except (SyntaxError, ValueError):
+            pass
+
+        # Attempt to convert to boolean
+        try:
+            if reference_string == 'True':
+                return True
+            elif reference_string == 'False':
+                return False
+        except ValueError:
+            pass
+
+        # If all conversion attempts fail, return the original string
         return reference_string
 
     def _create_module(self, mod_dict, mod_name, parent=""):
